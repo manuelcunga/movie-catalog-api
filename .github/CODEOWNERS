@@ -1,0 +1,4 @@
+*.ts @Lazaro-manuel
+*.yaml @Lazaro-manuel
+.github/* @Lazaro-manuel
+.github/ @Lazaro-manuel
