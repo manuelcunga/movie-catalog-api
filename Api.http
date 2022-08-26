@@ -1,0 +1,76 @@
+GET  http://localhost:3000
+###
+
+
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+	"name": "Afonso Cunga",
+	"email": "afonso@gmail.com",
+	"phone": "12121121212",
+	"password": "manuel"
+}
+
+###
+
+GET  http://localhost:3000/users
+
+###
+
+PUT  http://localhost:3000/users/03abc0cb-f9a8-40f2-9007-2305de18ed71
+content-type: application/json
+
+{
+	"name": "Lazaro ",
+	"email": "lazaro@gmail.com",
+	"phone": "12121121212",
+	"password": "121212121212"
+}
+###
+
+// Movies Endpoints
+
+POST http://localhost:3000/movies
+content-type: application/json
+
+{
+	"title": "Romeu Julieta",
+	"director": "Manuel",
+	"year": "2022-02-12",
+	"score": 22
+}
+
+###
+
+GET  http://localhost:3000/movies
+
+###
+
+Put http://localhost:3000/movies/15465a5c-a41f-4276-ac1d-ba5fd9e0ebfd
+content-type: application/json
+
+{
+	"title": "Kongu Fu",
+	"director": "Manuel",
+	"year": "2022-02-12",
+	"score": 22
+}
+
+
+###  
+
+GET  http://localhost:3000/movies/15465a5c-a41f-4276-ac1d-ba5fd9e0ebfd
+
+
+###
+
+### Login
+
+POST  http://localhost:3000/login
+content-type: application/json
+
+{
+	"email": "afonso@gmail.com",
+	"password": "manuel"
+}
