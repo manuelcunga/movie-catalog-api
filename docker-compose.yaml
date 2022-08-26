@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    entrypoint: ./start.sh
+    container_name: movie-api-app
+    restart: always
+    command: "npm start"
+    working_dir: /app
+    ports:
+      - 3002:3002
+      - 9229:9229
+    volumes:
+      - ./:/app
+    network_mode: host
+    depends_on: 
+      - db
+
+  db:
+    image: postgres
+    container_name: movie-api-db
+    restart: always
+    ports:
+      - 5432:5432
+    tty: true
+    environment:
+      - POSTGRES_USER=Docker
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=movie
+
+    volumes:
+      - pgdata:/data/postgres
+    network_mode: host
+
+  Redis:
+    image: redis:5.0.5
+    ports:
+    - "6379:6379"
+    volumes:
+    - /srv/docker/redis:/var/lib/redis
+    restart: always
+
+    
+volumes:
+  pgdata:
+
+
+
+
