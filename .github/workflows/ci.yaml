@@ -1,4 +1,4 @@
-name: ci-omunga
+name: ci-movie
 
 on:
   pull_request:
