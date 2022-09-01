@@ -1,7 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Movies } from '../../entities/movie';
 import { GetMovieService } from '../../services/get/getMovies.service';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('/movies')
 export class GetMovieController {
   constructor(private readonly movieService: GetMovieService) {}
