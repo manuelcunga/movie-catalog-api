@@ -1,3 +1,4 @@
+@authtoken = {{login.response.body.token}}
 GET  http://localhost:3000
 ###
 
@@ -6,18 +7,17 @@ POST http://localhost:3000/users
 content-type: application/json
 
 {
-	"name": "Afonso Cunga",
-	"email": "afonso@gmail.com",
+	"name": "Manuel Cunga",
+	"email": "cunga@gmail.com",
 	"phone": "12121121212",
 	"password": "manuel"
 }
 
 ###
-
+Authorization: Bearer {{authtoken}}
 GET  http://localhost:3000/users
 
 ###
-
 PUT  http://localhost:3000/users/03abc0cb-f9a8-40f2-9007-2305de18ed71
 content-type: application/json
 
@@ -29,24 +29,28 @@ content-type: application/json
 }
 ###
 
-// Movies Endpoints
+// Movies EndpoinCREATEDts
 
 POST http://localhost:3000/movies
+Authorization: Bearer {{authtoken}}
 content-type: application/json
 
+
 {
-	"title": "Romeu Julieta",
+	"title": "Black Panter",
 	"director": "Manuel",
 	"year": "2022-02-12",
 	"score": 22
 }
 
 ###
-
+Authorization: Bearer {{authtoken}}
 GET  http://localhost:3000/movies
+
 
 ###
 
+Authorization: Bearer {{authtoken}}
 Put http://localhost:3000/movies/15465a5c-a41f-4276-ac1d-ba5fd9e0ebfd
 content-type: application/json
 
@@ -56,21 +60,21 @@ content-type: application/json
 	"year": "2022-02-12",
 	"score": 22
 }
-
-
 ###  
 
+Authorization: Bearer {{authtoken}}
 GET  http://localhost:3000/movies/15465a5c-a41f-4276-ac1d-ba5fd9e0ebfd
 
 
 ###
 
 ### Login
-
+# @name login
 POST  http://localhost:3000/login
 content-type: application/json
 
+
 {
-	"email": "afonso@gmail.com",
+	"email": "cunga@gmail.com",
 	"password": "manuel"
 }
