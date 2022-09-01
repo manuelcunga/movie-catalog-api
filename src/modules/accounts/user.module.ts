@@ -11,6 +11,8 @@ import { UpdateUserService } from './services/update/updateUser.service';
 import { LoginController } from './controller/login/login.controller';
 import { LoginService } from './services/login/login.service';
 import { JwtModule } from '@nestjs/jwt';
+import { LocalStrategy } from './services/jwt-strategy/local-jwt.strategy.service';
+import { JwtStrategy } from './services/jwt-strategy/jwt.strategy.service';
 
 @Module({
   controllers: [
@@ -25,11 +27,14 @@ import { JwtModule } from '@nestjs/jwt';
     FindAllUserServuce,
     LoginService,
     UserRepository,
+    LocalStrategy,
+    JwtStrategy,
   ],
 
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      privateKey: process.env.JWT_KEY,
+      secretOrPrivateKey: process.env.JWT_KEY,
       signOptions: {
         expiresIn: '60s',
       },
