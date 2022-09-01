@@ -41,7 +41,7 @@ export class MoviesRepository implements IMoviesRepository {
     return await this.ormRepository.findOne({ id });
   }
 
-  public async delete(id: Movies): Promise<void> {
-    return undefined;
+  public async delete(id: string): Promise<any> {
+    return await this.ormRepository.softDelete({ id });
   }
 }
