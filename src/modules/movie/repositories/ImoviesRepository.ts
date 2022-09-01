@@ -7,5 +7,5 @@ export interface IMoviesRepository {
   findAll(): Promise<Movies[]>;
   update(id: string, data: CreateMovieDto): Promise<Movies>;
   getById(id: string): Promise<Movies>;
-  delete(id: Movies): Promise<void>;
+  delete(id: string): Promise<any>;
 }
