@@ -3,12 +3,15 @@ import {
   Controller,
   Param,
   Put,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UpdateMovieDTO } from '../../dtos/updateMovies.dto';
 import { UpdateMovieService } from '../../services/update/updatemovies.service';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('movies')
 export class UpdateMovieController {
   constructor(private readonly movieService: UpdateMovieService) {}
