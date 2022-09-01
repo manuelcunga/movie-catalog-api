@@ -42,9 +42,13 @@ services:
     restart: always
 
     
+  grpc-movies:
+    image: gusaul/grpcox:latest
+    ports: 
+      - 6969:6969
+
 volumes:
   pgdata:
 
-
-
+  
 
