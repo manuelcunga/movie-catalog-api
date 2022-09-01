@@ -5,7 +5,6 @@ import { IUserRepository } from 'src/modules/accounts/repositories/IUserReposito
 import { User } from 'src/modules/accounts/entities/User';
 import { CreateUserDTO } from 'src/modules/accounts/dtos/createUserDTO';
 import { UpdateUserDTO } from 'src/modules/accounts/dtos/updateUser.dto';
-import { LoginDTO } from 'src/modules/accounts/dtos/login.dto';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
@@ -25,7 +24,9 @@ export class UserRepository implements IUserRepository {
   }
 
   public async findAllUsers(): Promise<User[]> {
-    const users = await this.ormRepository.find();
+    const users = await this.ormRepository.find({
+      select: ['id', 'name', 'email', 'phone', 'createdAt'],
+    });
     return users;
   }
 
@@ -38,8 +39,8 @@ export class UserRepository implements IUserRepository {
     return await this.ormRepository.save(user);
   }
 
-  public async find(user: LoginDTO): Promise<User> {
-    const Finduser = await this.ormRepository.findOne(user);
+  public async find(id: string): Promise<User> {
+    const Finduser = await this.ormRepository.findOne({ id });
     return Finduser;
   }
 }
