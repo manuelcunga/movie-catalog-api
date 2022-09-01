@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MoviesRepository } from 'src/infra/database/typeorm/repositories/movies/moviesRepository';
+import { RedisCacheModule } from '../redis/redis.module';
 import { CreateMoviesController } from './controller/create/createMovie.controller';
 import { GetMovieController } from './controller/get/getMovie.controller';
 import { ListAllMoviesController } from './controller/listAll/listAllMovie.controller';
@@ -26,7 +27,14 @@ import { UpdateMovieService } from './services/update/updatemovies.service';
     MoviesRepository,
   ],
 
-  imports: [TypeOrmModule.forFeature([Movies])],
+  imports: [
+    RedisCacheModule,
+    TypeOrmModule.forFeature([Movies]),
+    CacheModule.register({
+      ttl: 5,
+      max: 100,
+    }),
+  ],
 
   exports: [TypeOrmModule],
 })
